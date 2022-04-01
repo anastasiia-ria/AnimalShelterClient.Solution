@@ -1,0 +1,12 @@
+<h1>Edit Info:</h1>
+<form action="/Animals/Details/@(Model.AnimalId)" method="post">
+  <label for="title">Animal's Title</label>
+  <input id="title" title="title" type="text" value="@(Model.Title)">
+  <label for="body">Animal's Body</label>
+  <input id="body" title="body" type="text" value="@(Model.AnimalBody)">
+  <label for="group">Animal's Group</label>
+  <input id="group" title="group" type="text" value="@(Model.Group)">
+  <button type="submit">Go!</button>
+</form>
+
+<a href="/Animals/Details/@(Model.AnimalId)"><p>Return to Details</p></a>

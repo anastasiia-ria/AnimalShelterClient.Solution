@@ -1,0 +1,85 @@
+<h1>Animals:</h1>
+<form class="row gy-3" id="filter">
+  <div class="col-3">
+    <label>Species</label>
+    <select class="form-control" name="species" id="species" aria-label="Species">
+      <option value="cat" selected >Cat</option>
+      <option value="dog">Dog</option>
+    </select>
+  </div>  
+  <div class="col-md-3">
+    <label>Sex</label>
+    <select class="form-control" name="sex">
+      <option value = "">None</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <label>Primary Color</label>
+    <select class="form-control" name="color">
+      <option value = "" selected >None</option>
+      <option value="black">Black</option>
+      <option value="orange">Orange</option>
+      <option value="brown">Brown</option>
+      <option value="white">White</option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <label>Breed</label>
+    <select class="form-control" name="breed" id="cat">
+      <option value = "" selected >None</option>
+      <option value="domestic longhair">Domestic Longhair</option>
+      <option value="domestic medium hair">Domestic Medium Hair</option>
+      <option value="domestic short hair">Domestic Short Hair</option>
+    </select>
+    <select class="form-control" name="breed" id="dog" style="display:none">
+      <option value = "" selected >None</option>
+      <option value="chihuauhua">Chihuauhua</option>
+      <option value="hound">Hound</option>
+      <option value="shepherd">Shepherd</option>
+      <option value="pit bull">Pit Bull</option>
+    </select>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Search</button>
+  </div>
+</form>
+<div class="grid">
+  @foreach(Animal animal in Model)
+  {
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src=@animal.Image alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">@animal.Name</h5>
+        <p class="card-text">@animal.Sex</p>
+        <p>@animal.Age years</p>
+        <p>@animal.Breed</p>
+        <a href="/Animals/Details/@animal.AnimalId" class="card-link">View Details</a>
+      </div>
+    </div>
+  }
+</ul>
+<script>
+  window.onload = function() {
+    $("#species").on("change", function(){
+      $(`#cat`).hide();
+      $(`#dog`).hide();
+      let species = $(this).val();
+      $(`#${species}`).show();
+    });
+
+
+    $("#filter").submit(function() {
+        let species = $('select[name="species"] option:selected').val();
+        let sex = $('select[name="sex"] option:selected').val();
+        let color = $('select[name="color"] option:selected').val();
+        let breed = $('select[name="breed"] option:selected').val();
+        $.ajax({
+        type: "GET",
+        url: '../../Animals/Index',
+        data: { 'species':species, 'sex': sex, 'color': color, 'breed': breed },
+      });
+    });
+  }
+</script>
