@@ -1,12 +1,35 @@
-<h1>Edit Info:</h1>
-<form action="/Animals/Details/@(Model.AnimalId)" method="post">
-  <label for="title">Animal's Title</label>
-  <input id="title" title="title" type="text" value="@(Model.Title)">
-  <label for="body">Animal's Body</label>
-  <input id="body" title="body" type="text" value="@(Model.AnimalBody)">
-  <label for="group">Animal's Group</label>
-  <input id="group" title="group" type="text" value="@(Model.Group)">
-  <button type="submit">Go!</button>
-</form>
+@model AnimalShelterClient.Models.Animal
 
-<a href="/Animals/Details/@(Model.AnimalId)"><p>Return to Details</p></a>
+<h1>Edit Info:</h1>
+<form clas="row g-3" action="/Animals/Details/@(Model.AnimalId)" method="post">
+    @Html.HiddenFor(model => model.AnimalId)
+    @Html.HiddenFor(model => model.Image)
+    @Html.HiddenFor(model => model.Species)
+  <div class="col-md-6">
+    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "form-label" })
+    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+  </div>
+  <div class="col-md-6">
+    @Html.LabelFor(model => model.Breed, htmlAttributes: new { @class = "form-label" })
+    @Html.EditorFor(model => model.Breed, new { htmlAttributes = new { @class = "form-control" } })
+  </div>
+  <div class="col-md-6">
+    @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "form-label" })
+    @Html.EditorFor(model => model.Sex, new { htmlAttributes = new { @class = "form-control" } })
+  </div>
+  <div class="col-md-6">
+    @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "form-label" })
+    @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+  </div>
+  <div class="col-md-6">
+    @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "form-label" })
+    @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+  </div>
+  <div class="col-md-6">
+    <button type="submit" class="btn btn-dark">Edit</button>
+  </div>
+</form>
+<div id="return">
+  <a href="/Animals/Details/@(Model.AnimalId)">←</a>
+</div>
+
