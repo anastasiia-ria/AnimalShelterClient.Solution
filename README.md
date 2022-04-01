@@ -37,19 +37,19 @@ Animal shelter shows animals currently in shelter using [Animal Shelter Api](htt
    ~/Desktop/AnimalShelterClient.Solution $ cd AnimalShelter
    ~/Desktop/AnimalShelterClient.Solution/AnimalShelter $ touch appsettings.json
    ~/Desktop/AnimalShelterClient.Solution/AnimalShelter $ echo '{
-      "ConnectionStrings": {
-        "DefaultConnection": "Server=localhost;Port=3306;database=anastasiia_riabets;uid=root;pwd=[PASSWORD];"
-      }
+      "Logging": {
+        "LogLevel": {
+          "Default": "Information",
+          "Microsoft": "Warning",
+          "Microsoft.Hosting.Lifetime": "Information"
+        }
+      },
+      "AllowedHosts": "*"
     }' > appsettings.json
   ```
-  [PASSWORD] is your password
 - Install packages and tools:
   ```
   ~/Desktop/AnimalShelterClient.Solution/AnimalShelter $ dotnet restore
-  ```
-- Update Database:
-  ```
-  ~/Desktop/AnimalShelterClient.Solution/AnimalShelter $ dotnet ef database update
   ```
 - Build the project:
   ```
@@ -63,7 +63,7 @@ Animal shelter shows animals currently in shelter using [Animal Shelter Api](htt
 
 ## Known Bugs
 
--
+- API Pagination is not used
 
 ## License
 
